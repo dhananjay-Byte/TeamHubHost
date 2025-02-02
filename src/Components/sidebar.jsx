@@ -3,10 +3,11 @@ import { FaTasks } from "react-icons/fa";
 import { IoChatbox } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
+import { logout } from '../utils/logoutUser';
 
 const Sidebar = () => {
   return (
-    <div className="m-2 relative flex flex-col bg-clip-border rounded-xl bg-black text-white h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <div className="m-2 relative flex flex-col bg-clip-border rounded-xl bg-black text-white h-[calc(100vh-4rem)] w-full max-w-[20rem] p-4 shadow-sm shadow-slate-400">
       <div className="mb-2 p-4">
         <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug">Welcome {localStorage.getItem('name')}</h5>
       </div>
@@ -31,7 +32,7 @@ const Sidebar = () => {
           Emails
         </a>
        
-        <a role="button" tabIndex="0" className="flex  items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-white  focus:bg-white  hover:text-black focus:text-black outline-none">
+        <a onClick={()=>logout()} role="button" tabIndex="0" className="flex  items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-white  focus:bg-white  hover:text-black focus:text-black outline-none">
           <div className="grid place-items-center mr-4">
             <IoLogOut/>
           </div>

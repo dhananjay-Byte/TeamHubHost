@@ -68,12 +68,10 @@ module.exports = (_, argv) => ({
       name: "host",
       filename: "remoteEntry.js",
       remotes: {
-        host: "host@http://localhost:3000/remoteEntry.js",
-        chat_app:"chat_app@http://localhost:3002/remoteEntry.js",
-        Email_Frontend:"Email_Frontend@http://localhost:3001/remoteEntry.js"
+        chat_app:"chat_app@https://team-hub-chat.vercel.app/remoteEntry.js",
+        Email_Frontend:"Email_Frontend@https://team-hub-email.vercel.app/remoteEntry.js"
       },
       exposes: {
-        "./MainLayout": "./src/MainLayout.jsx"
       },
       shared: {
         ...deps,

@@ -12,7 +12,7 @@ const initialState = {
 export const fetchUser = createAsyncThunk('users/fetchUser', async (data) => {
     try {
         const response = await axios.post(
-            `http://localhost:5000/v1/api/login/login-user`, // Use the `apiURL` variable
+            `${apiURL}/v1/api/login/login-user`, // Use the `apiURL` variable
             data,
             { withCredentials: true }
         )

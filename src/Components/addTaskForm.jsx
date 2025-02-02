@@ -3,17 +3,11 @@ import axios from 'axios'
 
 const AddTaskForm = ({ toggleButton}) => {
 
-    const [formData, setFormData] = useState();
+    const [task,setTask] = useState()
+    const[description,setDescription] = useState()
 const apiURL = process.env.REACT_APP_API_URL_BASE
 
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
 
     const handleCancel = (e) => {
         e.preventDefault()
@@ -24,24 +18,30 @@ const apiURL = process.env.REACT_APP_API_URL_BASE
     const handleAddTask = async (e) => {
         e.preventDefault();
         
+        if (!task || !description) {
+            alert("All fields are required");
+            return;
+        }
+    
         try {
-            const response = await axios.post(`${apiURL}/v1/api/task/add-task?userId=${localStorage.getItem('id')}`, formData, {
+            const response = await axios.post(`${apiURL}/v1/api/task/add-task?userId=${localStorage.getItem('id')}`, 
+            {
+                "taskName": task,
+                "taskDescription": description
+            }, 
+            {
                 withCredentials: true,
-                headers: { 'Content-Type': 'multipart/form-data' }
+                headers: { 'Content-Type': 'application/json' }
             });
     
-            alert('Task Added Succesfully!');
-    
+            alert('Task Added Successfully!');
             setTimeout(() => {
                 window.location.reload();
             }, 2000);
-    
         } catch (error) {
-            console.log('error in task',error)
-            const errorMessage =
-                error.response?.data?.message || 'An error occurred.';
-            
-            alert(errorMessage); // Display the error message to the user
+            console.log('Error in task:', error);
+            const errorMessage = error.response?.data?.message || 'An error occurred.';
+            alert(errorMessage);
         }
     };
     
@@ -57,7 +57,7 @@ const apiURL = process.env.REACT_APP_API_URL_BASE
                         type="text"
                         placeholder="Task Name"
                         name="taskName"
-                        onChange={(e)=>handleInputChange(e)}
+                        onChange={(e)=>setTask(e.target.value)}
                         required
                         className="w-full border text-black border-gray-300 rounded-md py-2 px-3"
                     />
@@ -67,7 +67,7 @@ const apiURL = process.env.REACT_APP_API_URL_BASE
                                 rows="5"
                                 placeholder="Task Description"
                                 name="taskDescription"
-                                onChange={(e)=>handleInputChange(e)}
+                                onChange={(e)=>setDescription(e.target.value)}
                                 required
                                 className="w-full text-black border border-gray-300 rounded-md py-2 px-3"
                             ></textarea>

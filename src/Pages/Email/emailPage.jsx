@@ -4,9 +4,9 @@ import Mail from 'Email_Frontend/Mail'
 
 function EmailPage() {
   return (
-    <div className='flex bg-slate-400 gap-2'>
+    <div className='flex bg-[#3C3D37]'>
         <Sidebar/>
-        <div className='mt-2'>
+        <div className='w-screen h-screen flex items-center justify-center'>
         <Mail/>
         </div>
     </div>

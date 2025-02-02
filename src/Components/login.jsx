@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../Redux/Slices/loginUserSlice";
 import { toast } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 const LoginComponent = () => {
     const [passwordType, setPasswordType] = useState('password')
     const [displayPassword, setDisplayPassword] = useState(true);
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const { userData } = useSelector((state) => state.loginUser)
@@ -38,6 +40,7 @@ const LoginComponent = () => {
             localStorage.setItem("email",userData.data.email)
             
             toast.success(`Login Successfull! Welcome ${userData.data.name}`)
+             navigate('/tasks')
         } 
         else if(userData?.status===401 || userData?.status===404){
             toast.error(userData?.data.error)

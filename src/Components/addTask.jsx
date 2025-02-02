@@ -5,9 +5,9 @@ function AddTask() {
      const [toggleForm, setToggleForm] = useState(false);
         const toggleFormButton = () => setToggleForm(!toggleForm)
   return (
-    <div className='h-screen w-screen bg-black text-white'>
+    <div className=' text-black'>
         <div>
-            <button onClick={toggleFormButton} className='border border-white shadow-sm shadow-slate-400 rounded-md p-2 text-xl'>Add Task</button>
+            <button onClick={toggleFormButton} className='border font-semibold border-white shadow-sm shadow-slate-400 rounded-md p-2 text-xl'>Add Task</button>
         </div>
 
         {
